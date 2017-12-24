@@ -1,9 +1,14 @@
 package com.tebeshir.twitter;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.SchemaAction;
+import org.springframework.data.cassandra.core.cql.keyspace.CreateKeyspaceSpecification;
+import org.springframework.data.cassandra.core.cql.keyspace.KeyspaceOption;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
 @Configuration
@@ -22,6 +27,12 @@ class CassandraConfiguration {
 		@Override
 		public SchemaAction getSchemaAction() {
 			return SchemaAction.CREATE;
+		}
+
+		@Override
+		protected List<CreateKeyspaceSpecification> getKeyspaceCreations() {
+			return Collections.singletonList(CreateKeyspaceSpecification.createKeyspace(getKeyspaceName()).ifNotExists()
+					.with(KeyspaceOption.DURABLE_WRITES, true).withSimpleReplication());
 		}
 
 	}
