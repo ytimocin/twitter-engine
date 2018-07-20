@@ -1,0 +1,4 @@
+1.	company based alerts => like 'if there is this word in a tweet that also have our company tags, we should be notified'
+	why? bad reputation => ex: burcu gida at eti
+2.	the people you follow that hasn't been active lately
+3.	

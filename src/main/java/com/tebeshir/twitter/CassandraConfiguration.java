@@ -26,7 +26,7 @@ class CassandraConfiguration {
 
 		@Override
 		public SchemaAction getSchemaAction() {
-			return SchemaAction.CREATE;
+			return SchemaAction.NONE;
 		}
 
 		@Override
